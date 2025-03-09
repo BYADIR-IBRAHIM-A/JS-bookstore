@@ -1,6 +1,4 @@
-let userInput = prompt("يرجى إدخال قيمة:");
-console.log("القيمة التي أدخلها المستخدم هي:", userInput);
-/*
+
 // تعريف المصفوفة لتخزين معلومات الكتب
 let books = [
     [1, "Start with Why", "Simon Sinek", 80.0, 13],
@@ -9,20 +7,33 @@ let books = [
     [4, "Zero to One", "Peter Thiel", 45.0, 12],
     [5, "You Don't Know JS", "Kyle Simpson", 39.9, 9]
 ];
+
+/*
+// دالة لإضافة كتاب جديد
+function addBook(bookId, bookTitle, author, price, quantity) {
+    books.push([bookId, bookTitle, author, price, quantity]);
+}
+*/
+let NUMBOOK=3;
+// دالة للاستعلام عن كتاب باستخدام رقم الكتاب
+function searchByBookId(NUMBOOK) {
+    for (let i = 0; i < books.length; i++) {
+        if (books[i][0] === books) {
+            console.log("يوجد");
+        }
+        else{
+            console.log("لا يوجد");
+        }
+    }
+}
+searchByBookId();
+/*
 // دالة لإضافة كتاب جديد
 function addBook(bookId, bookTitle, author, price, quantity) {
     books.push([bookId, bookTitle, author, price, quantity]);
 }
 
-// دالة للاستعلام عن كتاب باستخدام رقم الكتاب
-function searchByBookId(bookId) {
-    for (let i = 0; i < books.length; i++) {
-        if (books[i][0] === bookId) {
-            return books[i];
-        }
-    }
-    return null; // في حالة عدم العثور على الكتاب
-}
+
 
 // دالة للاستعلام عن كتاب باستخدام عنوان الكتاب
 function searchByTitle(title) {
