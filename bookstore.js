@@ -14,19 +14,21 @@ function addBook(bookId, bookTitle, author, price, quantity) {
     books.push([bookId, bookTitle, author, price, quantity]);
 }
 */
+
 let NUMBOOK=3;
 // دالة للاستعلام عن كتاب باستخدام رقم الكتاب
 function searchByBookId(NUMBOOK) {
     for (let i = 0; i < books.length; i++) {
-        if (books[i][0] === books) {
+        if (books[i][0] === NUMBOOK) {
             console.log("يوجد");
         }
-        else{
+        else {
             console.log("لا يوجد");
         }
     }
 }
-searchByBookId();
+searchByBookId(3);
+
 /*
 // دالة لإضافة كتاب جديد
 function addBook(bookId, bookTitle, author, price, quantity) {
