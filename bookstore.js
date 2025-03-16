@@ -8,6 +8,7 @@ let books = [
     [5, "You Don't Know JS", "Kyle Simpson", 39.9, 9]
 ];
 
+
 // دالة لإضافة كتاب جديد
 function addBook(bookId, bookTitle, author, price, quantity) {
     books.push([bookId, bookTitle, author, price, quantity]);
