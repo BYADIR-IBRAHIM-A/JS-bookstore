@@ -8,89 +8,91 @@ let books = [
     [5, "You Don't Know JS", "Kyle Simpson", 39.9, 9]
 ];
 
-/*
 // دالة لإضافة كتاب جديد
 function addBook(bookId, bookTitle, author, price, quantity) {
     books.push([bookId, bookTitle, author, price, quantity]);
 }
-*/
 
-let NUMBOOK=3;
 // دالة للاستعلام عن كتاب باستخدام رقم الكتاب
 function searchByBookId(NUMBOOK) {
+    let found = false;
     for (let i = 0; i < books.length; i++) {
         if (books[i][0] === NUMBOOK) {
             console.log("يوجد");
-        }
-        else {
-            console.log("لا يوجد");
+            found = true;
+            break;
         }
     }
+    if (!found) {
+        console.log("لا يوجد");
+    }
 }
-searchByBookId(3);
-
-/*
-// دالة لإضافة كتاب جديد
-function addBook(bookId, bookTitle, author, price, quantity) {
-    books.push([bookId, bookTitle, author, price, quantity]);
-}
-
-
 
 // دالة للاستعلام عن كتاب باستخدام عنوان الكتاب
 function searchByTitle(title) {
+    let found = false;
     for (let i = 0; i < books.length; i++) {
         if (books[i][1] === title) {
-            return books[i];
+            console.log("يوجد");
+            found = true;
+            break;
         }
     }
-    return null; // في حالة عدم العثور على الكتاب
+    if (!found) {
+        console.log("لا يوجد");
+    }
 }
-
 // دالة للاستعلام عن كتاب باستخدام اسم المؤلف
 function searchByAuthor(author) {
+    let found = false;
     for (let i = 0; i < books.length; i++) {
         if (books[i][2] === author) {
-            return books[i];
+            console.log("يوجد");
+            found = true;
+            break;
         }
     }
-    return null; // في حالة عدم العثور على الكتاب
-}
-
-// أمثلة على استخدام الدوال
-addBook(1, "Start with Why", "Simon Sinek", 80.0, 13);
-addBook(2, "But how do it know", "J. Clark Scott", 59.9, 22);
-addBook(3, "Clean Code", "Robert Cecil Martin", 50.0, 5);
-addBook(4, "Zero to One", "Peter Thiel", 45.0, 12);
-addBook(5, "You don't know JS", "Kyle Simpson", 39.9, 9);
-
-console.log(searchByBookId(3)); // [3, "Clean Code", "Robert Cecil Martin", 50.0, 5]
-console.log(searchByTitle("Zero to")); // [4, "Zero to One", "Peter Thiel", 45.0, 12]
-console.log(searchByAuthor("Kyle Simpson")); // [5, "You don't know JS", "Kyle Simpson", 39.9, 9]
-
-// دالة لبيع كتاب وإصدار فاتورة
-function sellBook(bookTitle, quantity, balance) {
-    for (let i = 0; i < books.length; i++) {
-        if (books[i][1] === bookTitle) {
-            if (books[i][4] >= quantity) {
-                const totalPrice = books[i][3] * quantity;
-                if (balance >= totalPrice) {
-                    books[i][4] -= quantity; // إنقاص المخزون
-                    balance -= totalPrice; // تحديث الرصيد
-                    return `تمت عملية الشراء بنجاح! \nفاتورة الشراء:\nعنوان الكتاب: ${bookTitle}\nالكمية: ${quantity}\nالسعر الإجمالي: ${totalPrice}\nالرصيد المتبقي: ${balance}`;
-                } else {
-                    return "الرصيد غير كافي لشراء الكمية المطلوبة.";
-                }
-            } else {
-                return "الكمية المطلوبة غير متوفرة في المخزون.";
-            }
-        }
+    if (!found) {
+        console.log("لا يوجد");
     }
-    return "الكتاب غير متوفر.";
 }
+// أبحث هنا 
+searchByBookId(1);
+searchByTitle("Youow JS");
+searchByAuthor("Kyle Sn");
 
-// أمثلة على تنفيذ عملية البيع وإصدار فاتورة
-console.log(sellBook("Zero to One", 3, 200)); // مثال لنجاح عملية البيع
-console.log(sellBook("Clean Code", 10, 500)); // مثال لفشل عملية البيع بسبب عدم توفر الكمية المطلوبة
-console.log(sellBook("But how do it know", 5, 100)); // مثال لفشل عملية البيع بسبب الرصيد غير كافي
-*/
+// المدخلات
+let bookId = 1; // رقم الكتاب الذي يريده العميل
+let quantityRequested = 1; // الكمية المطلوبة
+let customerBalance = 7; // رصيد العميل الحالي
+
+// إيجاد الكتاب المطلوب باستخدام bookId
+let book = books.find(item => item[0] === bookId);
+
+if (book) { // إذا تم العثور على الكتاب
+    let bookTitle = book[1];
+    let bookPrice = book[3];
+    let availableStock = book[4];
+
+    // التحقق من الشروط
+    if (availableStock >= quantityRequested) { // التحقق من توفر الكمية
+        let totalCost = bookPrice * quantityRequested; // حساب التكلفة الإجمالية
+        if (customerBalance >= totalCost) { // التحقق من الرصيد
+            // تنفيذ عملية البيع
+            book[4] -= quantityRequested; // تحديث المخزون
+            customerBalance -= totalCost; // تحديث رصيد العميل
+
+            console.log("تمت عملية الشراء بنجاح!");
+            console.log(`العنوان: ${bookTitle}`);
+            console.log(`الكمية: ${quantityRequested}`);
+            console.log(`المبلغ المدفوع: ${totalCost}`);
+            console.log("شكراً لتعاملكم معنا!");
+        } else {
+            console.log("رصيد العميل غير كافٍ لإتمام عملية الشراء.");
+        }
+    } else {
+        console.log("الكمية المطلوبة غير متوفرة في المخزون.");
+    }
+} else {
+    console.log("الكتاب غير موجود.");
+}
